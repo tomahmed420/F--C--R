@@ -1,28 +1,30 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { Download, Share2, RotateCcw, ShieldAlert } from 'lucide-react';
 import { makeResult } from '@/lib/crimes';
 
 export default function ResultPage() {
   const router = useRouter();
-  const params = useSearchParams();
-  const [name, setName] = useState(params.get('name') || 'Unknown Friend');
+  const [name, setName] = useState('Unknown Friend');
   const [photo, setPhoto] = useState('');
   const [report, setReport] = useState<ReturnType<typeof makeResult> | null>(null);
 
   useEffect(() => {
     const p = localStorage.getItem('fcr_photo') || '';
-    const n = localStorage.getItem('fcr_name') || name;
+    const n = localStorage.getItem('fcr_name') || 'Unknown Friend';
     setPhoto(p); setName(n); setReport(makeResult(`${n}|${p.slice(0,80)}`));
-  }, [name]);
+  }, []);
 
   const downloadCard = async () => {
-    const node = document.getElementById('report-card'); if (!node) return;
+    const node = document.getElementById('report-card');
+    if (!node || !report) return;
     const { toPng } = await import('html-to-image');
     const dataUrl = await toPng(node, { pixelRatio: 2, cacheBust: true });
-    const a = document.createElement('a'); a.download = `friend-criminal-record-${report?.caseId || 'report'}.png`; a.href = dataUrl; a.click();
+    const a = document.createElement('a');
+    a.download = `friend-criminal-record-${report.caseId}.png`;
+    a.href = dataUrl; a.click();
   };
 
   const share = async () => {
