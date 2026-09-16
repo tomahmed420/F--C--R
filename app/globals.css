@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root { --bg:#07080c; --panel:#0f1118; --panel2:#151925; --line:#252a38; --text:#f4f6fb; --muted:#9299aa; --danger:#ff3b46; --danger2:#ff6a45; }
+* { box-sizing:border-box; }
+html,body { min-height:100%; }
+body { margin:0; background:radial-gradient(circle at 50% -10%, #242534 0, var(--bg) 38%); color:var(--text); font-family:Arial, Helvetica, sans-serif; }
+button,input { font:inherit; }
+button { cursor:pointer; }
+.app { min-height:100dvh; padding:18px; display:flex; align-items:center; justify-content:center; }
+.shell { width:100%; max-width:520px; }
+.glass { background:linear-gradient(180deg, rgba(21,25,37,.96), rgba(11,13,19,.98)); border:1px solid var(--line); box-shadow:0 24px 80px rgba(0,0,0,.42); border-radius:24px; overflow:hidden; }
+.topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 20px; border-bottom:1px solid var(--line); }
+.badge { display:inline-flex; align-items:center; gap:8px; padding:7px 10px; border-radius:999px; background:rgba(255,59,70,.11); color:#ff7b82; border:1px solid rgba(255,59,70,.22); font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+.content { padding:28px 22px 22px; }
+.hero { text-align:center; padding:16px 0 24px; }
+.eyebrow { color:#ff6d75; font-size:12px; text-transform:uppercase; letter-spacing:.18em; font-weight:800; }
+h1 { margin:10px 0 12px; font-size:clamp(32px,10vw,52px); line-height:.98; letter-spacing:-.04em; }
+.sub { margin:0 auto; max-width:390px; color:var(--muted); line-height:1.6; }
+.disclaimer { margin:22px 0; padding:12px 14px; border-radius:14px; background:#0b0e14; border:1px solid #202534; color:#aab0bd; font-size:13px; line-height:1.5; }
+.primary { width:100%; border:0; border-radius:15px; padding:16px 18px; color:white; font-weight:900; background:linear-gradient(135deg,var(--danger),var(--danger2)); box-shadow:0 12px 32px rgba(255,59,70,.2); }
+.secondary { width:100%; border:1px solid var(--line); border-radius:15px; padding:14px 18px; color:white; background:#121621; font-weight:800; }
+.stack { display:grid; gap:12px; }
+.camera-wrap { position:relative; aspect-ratio:3/4; border-radius:22px; overflow:hidden; background:#020307; border:1px solid var(--line); }
+.camera-wrap video,.camera-wrap canvas { width:100%; height:100%; object-fit:cover; display:block; }
+.camera-guide { position:absolute; inset:12%; border:2px solid rgba(255,255,255,.8); border-radius:44% 44% 40% 40%; box-shadow:0 0 0 999px rgba(0,0,0,.2); pointer-events:none; }
+.scan-line { position:absolute; left:8%; right:8%; height:2px; top:18%; background:#ff4b56; box-shadow:0 0 18px #ff4b56; animation:scan 2.1s ease-in-out infinite alternate; }
+@keyframes scan { to { top:80%; } }
+.progress { height:10px; background:#1b1f2b; border-radius:999px; overflow:hidden; margin-top:14px; }
+.progress > div { height:100%; background:linear-gradient(90deg,var(--danger),#ff8a45); transition:width .4s; }
+.result-card { background:linear-gradient(145deg,#0b0d13,#181b26); border:1px solid #303746; border-radius:22px; overflow:hidden; }
+.result-head { padding:16px; background:linear-gradient(135deg,#2a0d12,#131722); border-bottom:1px solid #343746; }
+.result-body { padding:16px; }
+.photo { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; background:#090b10; }
+.row { display:flex; justify-content:space-between; gap:16px; padding:11px 0; border-bottom:1px solid #252a36; }
+.row:last-child { border-bottom:0; }
+.label { color:#8f97a8; font-size:13px; }
+.value { font-weight:800; text-align:right; }
+.meter { display:grid; gap:8px; margin:14px 0; }
+.meter-top { display:flex; justify-content:space-between; font-size:13px; }
+.meter-bar { height:9px; background:#1d222f; border-radius:999px; overflow:hidden; }
+.meter-bar span { display:block; height:100%; background:linear-gradient(90deg,#ff654c,#ff2f42); }
+.input { width:100%; border:1px solid var(--line); border-radius:14px; padding:14px; color:white; background:#0b0e14; outline:none; }
+.input:focus { border-color:#5b6273; }
+.small { color:#747c8f; font-size:12px; line-height:1.5; }
+.footer { text-align:center; padding:16px 0 6px; color:#676f80; font-size:11px; }
+@media (max-width:520px) { .app{padding:0;} .glass{min-height:100dvh;border-radius:0;border-left:0;border-right:0;} .content{padding:24px 16px 18px;} h1{font-size:40px;} }
