@@ -1,28 +1,29 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ShieldAlert, Camera, Fingerprint, Sparkles } from 'lucide-react';
+import { ShieldAlert, Fingerprint, Sparkles, Volume2 } from 'lucide-react';
+import { useFCRSounds } from '@/components/SoundSystem';
 
 export default function Home() {
   const router = useRouter();
-  return <main className="app"><section className="shell"><div className="glass">
-    <header className="topbar"><strong>F.C.R.</strong><span className="badge"><ShieldAlert size={14}/> Confidential</span></header>
+  const { startAmbient, playFCRSound } = useFCRSounds();
+  const start = () => { startAmbient(); playFCRSound('boot'); router.push('/scan'); };
+
+  return <main className="app cinematic-home"><section className="shell"><div className="glass hero-glass">
+    <header className="topbar"><strong className="logo-mark">F<span>CR</span></strong><span className="badge"><ShieldAlert size={14}/> CONFIDENTIAL</span></header>
     <div className="content">
       <div className="hero">
+        <div className="hero-art"><div className="hood"/><div className="art-glow"/></div>
         <div className="eyebrow">FRIEND INTELLIGENCE UNIT</div>
-        <h1>FRIEND<br/>CRIMINAL<br/>RECORD</h1>
-        <p className="sub">Run a completely fictional investigation and discover what your friend is allegedly guilty of.</p>
+        <h1 className="hero-title"><span>FCR</span><small>FRIEND CRIMINAL RECORD</small></h1>
+        <p className="sub">Every friend has a dark side. Discover their <b>fictional</b> criminal record.</p>
       </div>
-      <div className="disclaimer">⚠️ Comedy experience only. A photo is uploaded only after the participant chooses to take/select it and confirms the upload.</div>
-      <div className="stack">
-        <button className="primary" onClick={() => router.push('/scan')}><Camera size={19} style={{verticalAlign:'-4px',marginRight:8}}/> START INVESTIGATION</button>
-        <div className="small" style={{textAlign:'center'}}> <Fingerprint size={14} style={{verticalAlign:'-3px',marginRight:5}}/> biometric-style animation is fictional</div>
-      </div>
-      <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:10,marginTop:24}}>
-        <div className="disclaimer" style={{margin:0}}><Sparkles size={17}/><br/><b>Absurd Results</b><br/><span>Random comedy crimes</span></div>
-        <div className="disclaimer" style={{margin:0}}><ShieldAlert size={17}/><br/><b>Friend Safe</b><br/><span>Clear user action before upload</span></div>
-      </div>
-      <div className="footer">FCR • Fictional Friend Investigation System • 2026</div>
+      <div className="feature-strip"><span>◉ 100% FUN</span><span>◉ NO REAL DATA</span><span>◉ MADE FOR FRIENDS</span></div>
+      <div className="disclaimer">⚠️ <b>Entertainment only.</b> This is a fictional game. Camera access and photo selection happen only after your action.</div>
+      <button className="primary hero-cta" onClick={start}><Fingerprint size={20}/> START INVESTIGATION <span>→</span></button>
+      <div className="sound-note"><Volume2 size={14}/> Cinematic sound experience • Tap to begin</div>
+      <div className="mini-grid"><div><Sparkles size={17}/><b>ABSURD RESULTS</b><span>Random comedy crimes</span></div><div><ShieldAlert size={17}/><b>FRIEND SAFE</b><span>No hidden capture</span></div></div>
+      <div className="footer">FCR • FICTIONAL FRIEND INVESTIGATION SYSTEM • 2026</div>
     </div>
   </div></section></main>;
 }
